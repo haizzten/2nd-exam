@@ -1,32 +1,43 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import AgreementContext from "../Contexts/AgreementContext";
+import { addField, toggleField } from "./Reducer/action";
 
 function FieldsList() {
-    const initList = [
-        "Status",
-        "Quote Number",
-        "Agreement Name",
-        "Agreement Type",
-        "Distributor Name",
-        "Effective Date",
-        "Expiration Date",
-        "Created Date",
-        "Days Until Expiration",
-    ];
-    const [list, setList] = useState(initList);
-    return list.map((field, index) => {
-        return (
-            <div className="flex items-center">
-                <input
-                    type={"checkbox"}
-                    id={"item" + index}
-                    className="m-3 scale-200"
-                />
+    let [FieldList, dispatch] = useContext(AgreementContext);
+    // useEffect(() => {
+    //     const fieldsName = FieldList;
+    // }, []);
 
-                <label className="shrink-0" htmlFor={"item" + index}>
-                    {field}
-                </label>
-            </div>
-        );
-    });
+    console.log("list-data", FieldList);
+
+    function handleCheck(e) {
+        // dispatch((prev) => {
+        //     return prev.filter((fieldName) => fieldName !== label.innerText);
+        // });
+        dispatch(toggleField(e.target.id.substring(4)));
+    }
+
+    return (
+        <div className="flex flex-col" >
+            {FieldList.map((field, index) => {
+                return (
+                    <div className="flex items-center">
+                        <input
+                            key={index}
+                            type={"checkbox"}
+                            id={"item" + index}
+                            checked={field.checked}
+                            className="m-3 scale-200"
+                            onChange={handleCheck}
+                        />
+
+                        <label className="shrink-0" htmlFor={"item" + index}>
+                            {field.name}
+                        </label>
+                    </div>
+                );
+            })}
+        </div>
+    );
 }
 export default FieldsList;
