@@ -1,31 +1,32 @@
-import { SET, ADD, REMOVE, TOGGLE } from "./constant";
+import { TOGGLE } from "./constant";
+
+const initValue = [
+    { name: "Status", inputType: "text", checked: true },
+    { name: "Quote Number", inputType: "text", checked: true },
+    { name: "Agreement Name", inputType: "text", checked: true },
+    { name: "Agreement Type", inputType: "text", checked: true },
+    { name: "Distributor Name", inputType: "text", checked: true },
+    { name: "Effective Date", inputType: "date", checked: true },
+    { name: "Expiration Date", inputType: "date", checked: true },
+    { name: "Created Date", inputType: "date", checked: true },
+    { name: "Days Until Expiration", inputType: "text", checked: true },
+];
+
 function reducer(fieldList, action) {
+    console.log("LOG at  Reducer");
     switch (action.type) {
-        // case SET: {
-        //     console.log("payload: ", fieldList, action.payload);
-        //     break;
-        // }
-        // case ADD: {
-        //     console.log("ADD -> payload: ", fieldList, action.payload);
-        //     break;
-        // }
-        // case REMOVE: {
-        //     console.log("REMOVE -> payload: ", fieldList, action.payload);
-        //     return fieldList.filter(
-        //         (field, index) => field.name !== action.payload
-        //     );
-        //     break;
-        // }
         case TOGGLE: {
             let index = action.payload;
-            console.log(fieldList[index].checked);
-            // fieldList[index].checked = !fieldList[index].checked;
-            return fieldList;
+            const newFieldList = [...fieldList];
+            console.log(newFieldList);
+
+            newFieldList[index].checked = !newFieldList[index].checked;
+            return newFieldList;
             break;
         }
         default:
             console.log("DEFAULT", action);
-        // throw new Error("no such the action");
     }
 }
 export default reducer;
+export { initValue };

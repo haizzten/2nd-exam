@@ -1,53 +1,16 @@
-import { useEffect, useReducer, useState } from "react";
-import AgreementProvider from "../Contexts/AgreementProvider";
+import { useContext } from "react";
+import AgreementContext from "../Contexts/AgreementContext";
 import FieldsList from "./FieldsList";
-import { setFields } from "./Reducer/action";
-import reducer from "./Reducer/reducer";
 import TableHeader from "./TableHeader";
-const initValue = [
-    { name: "Status", inputType: "text", checked: true },
-    { name: "Quote Number", inputType: "text", checked: true },
-    { name: "Agreement Name", inputType: "text", checked: true },
-    { name: "Agreement Type", inputType: "text", checked: true },
-    { name: "Distributor Name", inputType: "text", checked: true },
-    { name: "Effective Date", inputType: "date", checked: true },
-    { name: "Expiration Date", inputType: "date", checked: true },
-    { name: "Created Date", inputType: "date", checked: true },
-    { name: "Days Until Expiration", inputType: "text", checked: true },
-];
 
-const fakeData = [
-    {
-        Status: "",
-        "Quote Number": "",
-        "Agreement Name": "",
-        "Agreement Type": "",
-        "Distributor Name": "",
-        "Effective Date": "",
-        "Expiration Date": "",
-        "Created Date": "",
-        "Days Until Expiration": "",
-    },
-];
-const fieldsName = [
-    "Status",
-    "Quote Number",
-    "Agreement Name",
-    "Agreement Type",
-    "Distributor Name",
-    "Effective Date",
-    "Expiration Date",
-    "Created Date",
-    "Days Until Expiration",
-];
 function Agreements() {
-    const [AgreementFields, dispatch] = useReducer(reducer, initValue);
-
-    console.log("agreement fields: ", AgreementFields);
+    const [AgreementFields, dispatch] = useContext(AgreementContext);
+    console.log("LOG at  agreement", AgreementFields);
     return (
         <div className={`flex p-8 bg-back-page min-h-screen`}>
             <div className="w-5/6 flex h-min overflow-x-scroll rounded-t-md">
                 {AgreementFields.map((field, index) => {
+                    console.log("field", field);
                     return (
                         field.checked && (
                             <TableHeader
@@ -60,9 +23,7 @@ function Agreements() {
                 })}
             </div>
             <div className="w-1/6 flex">
-                <AgreementProvider data={[AgreementFields, dispatch]}>
-                    <FieldsList></FieldsList>
-                </AgreementProvider>
+                <FieldsList></FieldsList>
             </div>
         </div>
     );

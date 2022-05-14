@@ -1,24 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import AgreementContext from "../Contexts/AgreementContext";
-import { addField, toggleField } from "./Reducer/action";
+import { toggleField } from "./Reducer/action";
 
 function FieldsList() {
     let [FieldList, dispatch] = useContext(AgreementContext);
-    // useEffect(() => {
-    //     const fieldsName = FieldList;
-    // }, []);
 
-    console.log("list-data", FieldList);
+    console.log("LOG at  Field List", FieldList);
 
     function handleCheck(e) {
-        // dispatch((prev) => {
-        //     return prev.filter((fieldName) => fieldName !== label.innerText);
-        // });
         dispatch(toggleField(e.target.id.substring(4)));
     }
 
     return (
-        <div className="flex flex-col" >
+        <div className="flex flex-col">
             {FieldList.map((field, index) => {
                 return (
                     <div className="flex items-center">
