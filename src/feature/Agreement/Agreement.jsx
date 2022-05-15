@@ -5,10 +5,11 @@ import ColumnData from "./ColumnData";
 import TableHeader from "./TableHeader";
 import Paging from "./Paging";
 import Button from "../../components/Button";
-
+import DataSeed from "../DataSeed";
 function Agreements({ ...props }) {
     const [start, setStart] = useState(0);
-    const [count, setCount] = useState(10);
+    const [count, setCount] = useState(22);
+    const total = DataSeed.length;
     const [showList, setShowList] = useState(true);
 
     const [AgreementFields, dispatch] = useContext(AgreementContext);
@@ -62,6 +63,7 @@ function Agreements({ ...props }) {
                     setStart={setStart}
                     count={count}
                     setCount={setCount}
+                    total={total}
                 ></Paging>
                 <Button
                     onClick={() => {

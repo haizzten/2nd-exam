@@ -1,15 +1,9 @@
 import DataSeed from "../DataSeed";
 
 function ColumnData({ fieldName, start, count, ...props }) {
-    // let fieldNames = [];
-    // for (const [key, value] of Object.entries(DataSeed[0])) {
-    //     fieldNames.push(key);
-    // }
-    // console.log("LOG at Table body :", fieldNames);
+
     return (
         <>
-            {/* {fieldNames.map((fieldName, index) => {
-                return ( */}
             <div className={` flex-col w-full`}>
                 {DataSeed.slice(start, count + start).map((field, index) => {
                     let data = field[fieldName];
@@ -33,8 +27,6 @@ function ColumnData({ fieldName, start, count, ...props }) {
                     );
                 })}
             </div>
-            {/* );
-            })} */}
         </>
     );
 }

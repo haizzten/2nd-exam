@@ -6,22 +6,40 @@ import {
     CgPushChevronRight,
 } from "react-icons/cg";
 
-function Paging({ ...props }) {
+function Paging({ total, start, setStart, count, setCount, ...props }) {
+    let canNext = start + count < total;
+    let canPrev = start >= count;
+    let currentPage = 1 + start / count;
+    let totalPages = Math.ceil(total / count);
+    function goPrev() {
+        if (canPrev) setStart((start) => (start -= count));
+    }
+    function goNext() {
+        if (canNext) setStart((start) => (start += count));
+    }
+    function goFirst() {
+        if (canPrev) setStart(0);
+    }
+    function goLast() {
+        if (canNext) setStart((Math.ceil(total / count) - 1) * count);
+    }
     return (
         <div className="flex justify-end bg-white p-2">
             <div className="flex justify-between">
-                <SmallButton>
-                    <CgPushChevronLeft />
+                <SmallButton disable={!canPrev} onClick={goFirst}>
+                    <CgPushChevronLeft className={`${canPrev ? "" : ""}`} />
                 </SmallButton>
-                <SmallButton>
-                    <CgChevronLeft />
+                <SmallButton disable={!canPrev} onClick={goPrev}>
+                    <CgChevronLeft className={`${canPrev ? "" : ""}`} />
                 </SmallButton>
-                <span>dfdfd</span>
-                <SmallButton>
-                    <CgChevronRight />
+                <span>
+                    Page {currentPage} of {totalPages}
+                </span>
+                <SmallButton disable={!canNext} onClick={goNext}>
+                    <CgChevronRight className={`${canNext ? "" : ""}`} />
                 </SmallButton>
-                <SmallButton>
-                    <CgPushChevronRight />
+                <SmallButton disable={!canNext} onClick={goLast}>
+                    <CgPushChevronRight className={`${canNext ? "" : ""}`} />
                 </SmallButton>
             </div>
         </div>
