@@ -83,7 +83,7 @@ function MainContent() {
                             <span className="font-semibold text-2xl">
                                 My workflow
                             </span>
-                            <BorderButton></BorderButton>
+                            <BorderButton>See all</BorderButton>
                         </div>
                         <div className="task flex items-center justify-center p-3 mb-6 text-zinc-400">
                             There are no tasks asigned to you.

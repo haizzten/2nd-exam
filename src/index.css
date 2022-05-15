@@ -24,6 +24,15 @@ body {
     p {
         @apply leading-6;
     }
+    #table-header:after {
+        content: "";
+        background: #f0f;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 50%;
+        width: 1px;
+    }
 }
 
 @layer components {
