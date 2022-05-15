@@ -10,12 +10,25 @@ module.exports = {
                 "agreement-table-header": "#e6e4e4",
             },
             height: {},
+            maxWidth: {
+                "5/6": "83.333333%",
+            },
             scale: {
                 200: "2",
                 300: "3",
                 400: "4",
                 500: "5",
                 600: "6",
+            },
+            saturate: {
+                110: "1.1",
+            },
+            transitionProperty: {
+                y: "height",
+                x: "width",
+            },
+            width: {
+                "agreement-table": "calc(100% - 13rem)",
             },
         },
     },

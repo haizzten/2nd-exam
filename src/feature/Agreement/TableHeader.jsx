@@ -1,5 +1,5 @@
 import { BiFilterAlt } from "react-icons/bi";
-import Button, { FilterButton } from "../../components/Button";
+import Button, { SmallButton } from "../../components/Button";
 function TableHeader({ inputType, name, ...props }) {
     return (
         <div
@@ -12,9 +12,9 @@ function TableHeader({ inputType, name, ...props }) {
                     type={`${inputType}`}
                     className="rounded w-40 px-2 grow-1"
                 />
-                <FilterButton>
+                <SmallButton>
                     <BiFilterAlt></BiFilterAlt>
-                </FilterButton>
+                </SmallButton>
             </div>
         </div>
     );

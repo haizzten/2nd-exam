@@ -12,7 +12,7 @@ function FieldsList() {
     }
 
     return (
-        <div className="flex flex-col">
+        <>
             {FieldList.map((field, index) => {
                 return (
                     <div className="flex items-center">
@@ -21,17 +21,20 @@ function FieldsList() {
                             type={"checkbox"}
                             id={"item" + index}
                             checked={field.checked}
-                            className="m-3 scale-200"
+                            className="m-3 scale-150 cursor-pointer"
                             onChange={handleCheck}
                         />
 
-                        <label className="shrink-0" htmlFor={"item" + index}>
+                        <label
+                            className="shrink-0 text-sm"
+                            htmlFor={"item" + index}
+                        >
                             {field.name}
                         </label>
                     </div>
                 );
             })}
-        </div>
+        </>
     );
 }
 export default FieldsList;
