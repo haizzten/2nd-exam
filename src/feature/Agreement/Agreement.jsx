@@ -30,7 +30,7 @@ function Agreements({ ...props }) {
                     ref={myTable}
                 >
                     <div
-                        className={`transition-all duration-500 h-min rounded-t-md basis-96
+                        className={`transition-all duration-500 h-min rounded-t-md flex overflow-x-auto
                         ${
                             showList
                                 ? isOverflow
@@ -39,30 +39,28 @@ function Agreements({ ...props }) {
                                 : "w-full"
                         } `}
                     >
-                        <div className="flex overflow-x-auto">
-                            {AgreementFields.map((field, index) => {
-                                return (
-                                    <>
-                                        {field.checked && (
-                                            <div className="flex-col">
-                                                <TableHeader
-                                                    key={index}
-                                                    name={field.name}
-                                                    inputType={field.inputType}
-                                                ></TableHeader>
-                                                <div className="flex">
-                                                    <ColumnData
-                                                        start={start}
-                                                        count={count}
-                                                        fieldName={field.name}
-                                                    ></ColumnData>
-                                                </div>
+                        {AgreementFields.map((field, index) => {
+                            return (
+                                <>
+                                    {field.checked && (
+                                        <div className="flex-col">
+                                            <TableHeader
+                                                key={index}
+                                                name={field.name}
+                                                inputType={field.inputType}
+                                            ></TableHeader>
+                                            <div className="flex">
+                                                <ColumnData
+                                                    start={start}
+                                                    count={count}
+                                                    fieldName={field.name}
+                                                ></ColumnData>
                                             </div>
-                                        )}
-                                    </>
-                                );
-                            })}
-                        </div>
+                                        </div>
+                                    )}
+                                </>
+                            );
+                        })}
                     </div>
                     <div
                         className={`basis-52 shrink-0 grow-0 flex-col px-3 transition-all duration-100 ${
