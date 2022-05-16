@@ -6,6 +6,7 @@ import TableHeader from "./TableHeader";
 import Paging from "./Paging";
 import Button from "../../components/Button";
 import DataSeed from "../DataSeed";
+import AgreementTable from "./AgreementTable";
 function Agreements({ ...props }) {
     const [start, setStart] = useState(0);
     const [count, setCount] = useState(22);
@@ -15,8 +16,6 @@ function Agreements({ ...props }) {
     const myTable = useRef();
     const [showList, setShowList] = useState(true);
 
-    const [AgreementFields, dispatch] = useContext(AgreementContext);
-    // console.log("LOG at agreement", AgreementFields);
     useEffect(() => {
         setIsOverFlow(isOverflowing(myTable.current));
         console.log("overflow?", isOverflow, myTable.current.scrollWidth);
@@ -39,28 +38,10 @@ function Agreements({ ...props }) {
                                 : "w-full"
                         } `}
                     >
-                        {AgreementFields.map((field, index) => {
-                            return (
-                                <>
-                                    {field.checked && (
-                                        <div className="flex-col">
-                                            <TableHeader
-                                                key={index}
-                                                name={field.name}
-                                                inputType={field.inputType}
-                                            ></TableHeader>
-                                            <div className="flex">
-                                                <ColumnData
-                                                    start={start}
-                                                    count={count}
-                                                    fieldName={field.name}
-                                                ></ColumnData>
-                                            </div>
-                                        </div>
-                                    )}
-                                </>
-                            );
-                        })}
+                        <AgreementTable
+                            start={start}
+                            count={count}
+                        ></AgreementTable>
                     </div>
                     <div
                         className={`basis-52 shrink-0 grow-0 flex-col px-3 transition-all duration-100 ${

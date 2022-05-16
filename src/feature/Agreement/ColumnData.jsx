@@ -57,24 +57,6 @@ function ColumnData({ fieldName, start, count, ...props }) {
                         );
                         data = returnedSpan;
                     }
-                    // return (
-                    //     <div
-                    //         className={`${
-                    //             stripped ? "bg-white" : "bg-slate-100"
-                    //         } ${
-                    //             fieldName == "Status"
-                    //                 ? data == "Invalid"
-                    //                     ? "text-rose-600 invalid-icon"
-                    //                     : data == "Published"
-                    //                     ? "text-green-600 pulished-icon"
-                    //                     : "text-zinc-400 pending-icon"
-                    //                 : ""
-                    //         } w-full px-4 py-2 `}
-                    //     >
-                    //         {data}
-                    //         {returnedSpan}
-                    //     </div>
-                    // );
 
                     return (
                         <div
