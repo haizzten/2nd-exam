@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import AgreementContext from "../Contexts/AgreementContext";
 import FieldsList from "./FieldsList";
 import ColumnData from "./ColumnData";
@@ -9,20 +9,35 @@ import DataSeed from "../DataSeed";
 function Agreements({ ...props }) {
     const [start, setStart] = useState(0);
     const [count, setCount] = useState(22);
+    const [isOverflow, setIsOverFlow] = useState();
     const total = DataSeed.length;
+
+    const myTable = useRef();
     const [showList, setShowList] = useState(true);
 
     const [AgreementFields, dispatch] = useContext(AgreementContext);
     // console.log("LOG at agreement", AgreementFields);
+    useEffect(() => {
+        setIsOverFlow(isOverflowing(myTable.current));
+        console.log("overflow?", isOverflow, myTable.current.scrollWidth);
+    }, [showList]);
 
     return (
         <div className={`flex p-8 bg-back-page min-h-screen`}>
             <div className="flex-col w-full">
-                {/* <div className="flex relative justify-start "> */}
-                <div className="flex relative justify-start overflow-hidden ">
+                <div
+                    className="flex relative justify-start overflow-hidden "
+                    ref={myTable}
+                >
                     <div
                         className={`transition-all duration-500 h-min rounded-t-md basis-96
-                        ${showList ? "w-agreement-table" : "w-full"} `}
+                        ${
+                            showList
+                                ? isOverflow
+                                    ? "w-agreement-table"
+                                    : "w-full"
+                                : "w-full"
+                        } `}
                     >
                         <div className="flex overflow-x-auto">
                             {AgreementFields.map((field, index) => {
@@ -75,5 +90,8 @@ function Agreements({ ...props }) {
             </div>
         </div>
     );
+}
+function isOverflowing(element) {
+    return element.scrollWidth > element.offsetWidth;
 }
 export default Agreements;
