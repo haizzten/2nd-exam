@@ -22,11 +22,11 @@ function BorderButton({ children, ...props }) {
         </button>
     );
 }
-function SmallButton({ children, ...props }) {
+function SmallButton({ children, onClick, ...props }) {
     return (
         <button
             disabled={props.disable}
-            onClick={props.onClick}
+            onClick={onClick}
             className="rounded border-button text-button hover:bg-button hover:text-white active:bg-sky-800 disabled:bg-transparent disabled:text-zinc-400 transform duration-200 mx-2 p-2"
         >
             {children}

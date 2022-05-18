@@ -1,10 +1,11 @@
 import { useReducer } from "react";
-import reducer, { initValue } from "../Agreement/Reducer/reducer";
+import checkListReducer, {
+    initValue,
+} from "../Agreement/CheckListReducer/reducer";
 import AgreementContext from "./AgreementContext";
 
 function AgreementProvider({ children }) {
-    console.log("LOG at  Agreement Provider");
-    const [AgreementFields, dispatch] = useReducer(reducer, initValue);
+    const [AgreementFields, dispatch] = useReducer(checkListReducer, initValue);
     return (
         <AgreementContext.Provider value={[AgreementFields, dispatch]}>
             {children}

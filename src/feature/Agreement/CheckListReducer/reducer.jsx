@@ -12,7 +12,7 @@ const initValue = [
     { inputType: "text", checked: true, name: "Days Until Expiration" },
 ];
 
-function reducer(fieldList, action) {
+function checkListReducer(fieldList, action) {
     console.log("LOG at  Reducer");
     switch (action.type) {
         case TOGGLE: {
@@ -28,5 +28,5 @@ function reducer(fieldList, action) {
             console.log("DEFAULT", action);
     }
 }
-export default reducer;
+export default checkListReducer;
 export { initValue };

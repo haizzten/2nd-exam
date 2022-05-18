@@ -1,31 +1,25 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import AgreementContext from "../Contexts/AgreementContext";
-import FieldsList from "./FieldsList";
-import ColumnData from "./ColumnData";
-import TableHeader from "./TableHeader";
+import FieldsCheckList from "./FieldsList";
 import Paging from "./Paging";
 import Button from "../../components/Button";
-import DataSeed from "../DataSeed";
 import AgreementTable from "./AgreementTable";
 function Agreements({ ...props }) {
     const [start, setStart] = useState(0);
-    const [count, setCount] = useState(22);
+    const [count, setCount] = useState(20);
     const [isOverflow, setIsOverFlow] = useState();
-    const total = DataSeed.length;
-
-    const myTable = useRef();
     const [showList, setShowList] = useState(true);
+    const myTable = useRef();
 
     useEffect(() => {
         setIsOverFlow(isOverflowing(myTable.current));
-        console.log("overflow?", isOverflow, myTable.current.scrollWidth);
+        // console.log("overflow?", isOverflow, myTable.current.scrollWidth);
     }, [showList]);
 
     return (
         <div className={`flex p-8 bg-back-page min-h-screen`}>
             <div className="flex-col w-full">
                 <div
-                    className="flex relative justify-start overflow-hidden "
+                    className="flex relative justify-start overflow-hidden w-full"
                     ref={myTable}
                 >
                     <div
@@ -48,16 +42,14 @@ function Agreements({ ...props }) {
                             showList ? "" : "translate-x-full"
                         } `}
                     >
-                        <FieldsList></FieldsList>
+                        <FieldsCheckList></FieldsCheckList>
                     </div>
                 </div>
-
                 <Paging
                     start={start}
                     setStart={setStart}
                     count={count}
                     setCount={setCount}
-                    total={total}
                 ></Paging>
                 <Button
                     onClick={() => {

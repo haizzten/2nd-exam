@@ -1,12 +1,20 @@
 import { SmallButton } from "../../components/Button";
+import ColumnDataContext from "../Contexts/ColumnDataContext";
+
 import {
     CgPushChevronLeft,
     CgChevronLeft,
     CgChevronRight,
     CgPushChevronRight,
 } from "react-icons/cg";
+import { useContext } from "react";
 
-function Paging({ total, start, setStart, count, setCount, ...props }) {
+function Paging({ start, setStart, count, setCount, ...props }) {
+    const [ColumnData, dispatchColumnData] = useContext(ColumnDataContext);
+
+    const total = ColumnData.length;
+
+    if (start > total) setStart(0);
     let canNext = start + count < total;
     let canPrev = start >= count;
     let currentPage = 1 + start / count;

@@ -1,11 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import AgreementContext from "../Contexts/AgreementContext";
-import { toggleField } from "./Reducer/action";
+import { toggleField } from "./CheckListReducer/action";
 
-function FieldsList() {
-    let [FieldList, dispatch] = useContext(AgreementContext);
-
-    console.log("LOG at  Field List", FieldList);
+function FieldsCheckList() {
+    const [FieldList, dispatch] = useContext(AgreementContext);
 
     function handleCheck(e) {
         dispatch(toggleField(e.target.id.substring(4)));
@@ -37,4 +35,4 @@ function FieldsList() {
         </>
     );
 }
-export default FieldsList;
+export default FieldsCheckList;

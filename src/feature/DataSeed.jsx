@@ -18,7 +18,7 @@ export default [
         "Distributor Name": "HBHUTWC",
         "Effective Date": "1/3/2020",
         "Expiration Date": "2/25/2020",
-        "Created Date": "7/28/2020",
+        "Created Date": "2020/7/28",
         "Days Until Expiration": "GBGTRL",
     },
     {

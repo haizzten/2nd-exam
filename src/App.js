@@ -2,6 +2,8 @@ import MainContent from "./components/MainContent";
 import Navbar from "./components/Navbar";
 import Agreements from "./feature/Agreement/Agreement";
 import AgreementProvider from "./feature/Contexts/AgreementProvider";
+import ColumnDataProvider from "./feature/Contexts/ColumnDataProvider";
+import FilterProvider from "./feature/Contexts/FilterProvider";
 
 export default function App() {
     return (
@@ -9,7 +11,12 @@ export default function App() {
             <Navbar></Navbar>
             <MainContent></MainContent>
             <AgreementProvider>
-                <Agreements></Agreements>
+                <ColumnDataProvider>
+                    {" "}
+                    <FilterProvider>
+                        <Agreements></Agreements>
+                    </FilterProvider>
+                </ColumnDataProvider>
             </AgreementProvider>
         </>
     );
