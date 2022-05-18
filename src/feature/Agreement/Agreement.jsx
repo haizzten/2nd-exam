@@ -19,7 +19,7 @@ function Agreements({ ...props }) {
         <div className={`flex p-8 bg-back-page min-h-screen`}>
             <div className="flex-col w-full">
                 <div
-                    className="flex relative justify-start overflow-hidden w-full"
+                    className="flex relative justify-start overflow-hidden "
                     ref={myTable}
                 >
                     <div
